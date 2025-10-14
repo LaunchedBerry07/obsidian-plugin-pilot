@@ -9,10 +9,10 @@
 
   <p align="center">
     Take control of your Obsidian plugins! Categorize, annotate, create profiles, and inspect your plugins to keep your vault running smoothly.
-    <br />
+    <br/>
     <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot"><strong>Explore the docs</strong></a>
-    <br />
-    <br />
+    <br/>
+    <br/>
     <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot/issues">Report Bug</a>
     ·
     <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot/issues">Request Feature</a>
