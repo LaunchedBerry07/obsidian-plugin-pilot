@@ -20,7 +20,7 @@
 </div>
 
 <!-- TABLE OF CONTENTS -->
-## TABLE OF CONTENTS 
+## Table of Contents 
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -104,9 +104,9 @@ Plugin Pilot is designed to be intuitive. Here’s a quick guide to its main fea
 5. Inspecting Plugins
     Curious what a plugin does? Click the "info" icon on any plugin row to see a summary of the commands, settings tabs, and ribbon icons it adds to your workspace.
 6. Using Profiles
-    In the settings tab, create a new profile. Then, click "Edit" to open the profile editor, where you can toggle which plugins should be active for that profile. A new command will be created for each profile, allowing you to activate it instantly from the Command Palette.
+* In the settings tab, create a new profile. Then, click "Edit" to open the profile editor, where you can toggle which plugins should be active for that profile. A new command will be created for each profile, allowing you to activate it instantly from the Command Palette.
 7. Exporting Your List
-    Run the "Plugin Pilot: Export plugin list to Markdown" command. A new note will be created in your vault with a fully detailed and formatted list of your plugins, including links, ratings, notes, and summaries.
+* Run the "Plugin Pilot: Export plugin list to Markdown" command. A new note will be created in your vault with a fully detailed and formatted list of your plugins, including links, ratings, notes, and summaries.
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -128,21 +128,15 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
 
 Project Link: [https://github.com/LaunchedBerry07/obsidian-plugin-pilot](https://github.com/LaunchedBerry07/obsidian-plugin-pilot)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
