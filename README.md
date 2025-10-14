@@ -1,5 +1,5 @@
 <!-- PROJECT LOGO -->
-<br />
+<br/>
 <div align="center">
   <a href=https://raw.githubusercontent.com/LaunchedBerry07/obsidian-plugin-pilot/refs/heads/master/images/icon.png">
     <img src="images/icon.png" alt="Icon" width="80" height="80">
@@ -17,6 +17,8 @@
     <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot/issues">Report Bug</a>
     ·
     <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot/issues">Request Feature</a>
+<br/>
+<br/>
   </p>
 </div>
 
