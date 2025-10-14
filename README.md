@@ -6,7 +6,7 @@
   </a>
 
   <h3 align="center">Plugin Pilot for Obsidian</h3>
-
+<br/>
   <p align="center">
     Take control of your Obsidian plugins! Categorize, annotate, create profiles, and inspect your plugins to keep your vault running smoothly.
     <br/>
