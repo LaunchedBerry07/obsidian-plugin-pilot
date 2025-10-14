@@ -1,8 +1,45 @@
-/*
+.plugin-pilot-modal {
+   width: 80%;
+   max-width: 900px;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.plugin-pilot-modal .setting-item {
+   border-top: 1px solid var(--background-modifier-border);
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
 
-If your plugin does not need CSS, delete this file.
+.star-rating-container {
+   display: flex;
+   gap: 4px;
+   align-items: center;
+}
 
-*/
+.star-icon {
+   cursor: pointer;
+   color: var(--text-faint);
+}
+
+.star-icon.filled {
+   color: var(--text-accent);
+}
+
+.conflict-icon {
+   color: var(--text-error);
+   margin-right: 8px;
+}
+
+.inspector-summary-section {
+   margin-bottom: 1em;
+}
+
+.inspector-summary-section h4 {
+   border-bottom: 1px solid var(--background-modifier-border);
+   padding-bottom: 0.3em;
+   margin-bottom: 0.5em;
+}
+
+.inspector-summary-section ul {
+   list-style-position: inside;
+   padding-left: 1em;
+}
