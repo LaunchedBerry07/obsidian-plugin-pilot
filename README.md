@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot">
+  <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot https://raw.githubusercontent.com/LaunchedBerry07/obsidian-plugin-pilot/refs/heads/master/images/icon.png">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
