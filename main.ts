@@ -1,134 +1,117 @@
-import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+﻿import { Notice, Plugin, TFile } from 'obsidian';
+import { PluginPilotSettingTab } from './src/SettingsTab';
+import { PluginManagerModal } from './src/PluginManagerModal';
+import { PluginPilotSettings, DEFAULT_SETTINGS } from './src/types';
+import { generateMarkdown, getPluginInfo } from './src/utils';
 
-// Remember to rename these classes and interfaces!
+export default class PluginPilot extends Plugin {
+   settings: PluginPilotSettings;
 
-interface MyPluginSettings {
-	mySetting: string;
-}
+   async onload() {
+       await this.loadSettings();
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: 'default'
-}
+       // Add ribbon icon
+       this.addRibbonIcon('plane-takeoff', 'Plugin Pilot', () => {
+           new PluginManagerModal(this.app, this).open();
+       });
 
-export default class MyPlugin extends Plugin {
-	settings: MyPluginSettings;
+       // Add command to open the modal
+       this.addCommand({
+           id: 'open-plugin-pilot',
+           name: 'Open Plugin Pilot',
+           callback: () => {
+               new PluginManagerModal(this.app, this).open();
+           },
+       });
+       
+       // Add command to export the list
+       this.addCommand({
+           id: 'export-plugin-list',
+           name: 'Export plugin list to Markdown',
+           callback: () => this.exportPluginList()
+       });
 
-	async onload() {
-		await this.loadSettings();
+       // Add settings tab
+       this.addSettingTab(new PluginPilotSettingTab(this.app, this));
+       
+       this.registerProfileCommands();
+   }
 
-		// This creates an icon in the left ribbon.
-		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (_evt: MouseEvent) => {
-			// Called when the user clicks the icon.
-			new Notice('This is a notice!');
-		});
-		// Perform additional things with the ribbon
-		ribbonIconEl.addClass('my-plugin-ribbon-class');
+   onunload() {}
 
-		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
-		const statusBarItemEl = this.addStatusBarItem();
-		statusBarItemEl.setText('Status Bar Text');
+   async loadSettings() {
+       this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+   }
 
-		// This adds a simple command that can be triggered anywhere
-		this.addCommand({
-			id: 'open-sample-modal-simple',
-			name: 'Open sample modal (simple)',
-			callback: () => {
-				new SampleModal(this.app).open();
-			}
-		});
-		// This adds an editor command that can perform some operation on the current editor instance
-		this.addCommand({
-			id: 'sample-editor-command',
-			name: 'Sample editor command',
-			editorCallback: (editor: Editor, _view: MarkdownView) => {
-				console.log(editor.getSelection());
-				editor.replaceSelection('Sample Editor Command');
-			}
-		});
-		// This adds a complex command that can check whether the current state of the app allows execution of the command
-		this.addCommand({
-			id: 'open-sample-modal-complex',
-			name: 'Open sample modal (complex)',
-			checkCallback: (checking: boolean) => {
-				// Conditions to check
-				const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-				if (markdownView) {
-					// If checking is true, we're simply "checking" if the command can be run.
-					// If checking is false, then we want to actually perform the operation.
-					if (!checking) {
-						new SampleModal(this.app).open();
-					}
+   async saveSettings() {
+       await this.saveData(this.settings);
+       this.registerProfileCommands(); // Re-register commands when settings change
+   }
+   
+   // This allows other commands to be dynamically added
+   private commandIds: string[] = [];
 
-					// This command will only show up in Command Palette when the check function returns true
-					return true;
-				}
-			}
-		});
+   registerProfileCommands() {
+       // Unload any previously registered commands
+       this.commandIds.forEach(id => this.app.commands.removeCommand(id));
+       this.commandIds = [];
+       
+       this.settings.profiles.forEach(profile => {
+           const commandId = `apply-profile-${profile.id}`;
+           this.addCommand({
+               id: commandId,
+               name: `Apply Profile: ${profile.name}`,
+               callback: () => this.applyProfile(profile.id),
+           });
+           this.commandIds.push(commandId);
+       });
+   }
 
-		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new SampleSettingTab(this.app, this));
+   async applyProfile(profileId: string) {
+       const profile = this.settings.profiles.find(p => p.id === profileId);
+       if (!profile) {
+           new Notice('Profile not found.');
+           return;
+       }
 
-		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
-		// Using this function will automatically remove the event listener when this plugin is disabled.
-		this.registerDomEvent(document, 'click', (evt: MouseEvent) => {
-			console.log('click', evt);
-		});
+       new Notice(`Applying profile: ${profile.name}...`);
 
-		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.
-		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
-	}
+       // @ts-ignore - Using internal API to enable/disable plugins
+       const communityPlugins = this.app.plugins.plugins;
 
-	onunload() {
+       for (const pluginId in communityPlugins) {
+           if (pluginId === 'plugin-pilot') continue; // Don't disable ourself!
 
-	}
+           const shouldBeEnabled = profile.plugins[pluginId] || false;
+           const isEnabled = communityPlugins[pluginId]._loaded;
 
-	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
-	}
-
-	async saveSettings() {
-		await this.saveData(this.settings);
-	}
-}
-
-class SampleModal extends Modal {
-	constructor(app: App) {
-		super(app);
-	}
-
-	onOpen() {
-		const {contentEl} = this;
-		contentEl.setText('Woah!');
-	}
-
-	onClose() {
-		const {contentEl} = this;
-		contentEl.empty();
-	}
-}
-
-class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
-
-	constructor(app: App, plugin: MyPlugin) {
-		super(app, plugin);
-		this.plugin = plugin;
-	}
-
-	display(): void {
-		const {containerEl} = this;
-
-		containerEl.empty();
-
-		new Setting(containerEl)
-			.setName('Setting #1')
-			.setDesc('It\'s a secret')
-			.addText(text => text
-				.setPlaceholder('Enter your secret')
-				.setValue(this.plugin.settings.mySetting)
-				.onChange(async (value) => {
-					this.plugin.settings.mySetting = value;
-					await this.plugin.saveSettings();
-				}));
-	}
+           if (shouldBeEnabled && !isEnabled) {
+               // @ts-ignore
+               await this.app.plugins.enablePlugin(pluginId);
+           } else if (!shouldBeEnabled && isEnabled) {
+               // @ts-ignore
+               await this.app.plugins.disablePlugin(pluginId);
+           }
+       }
+       
+       new Notice(`Profile "${profile.name}" applied successfully.`);
+   }
+   
+   async exportPluginList() {
+       const filePath = 'My Plugin List.md';
+       const content = generateMarkdown(this.app, this.settings);
+       
+       try {
+           const file = this.app.vault.getAbstractFileByPath(filePath);
+           if(file && file instanceof TFile) {
+               await this.app.vault.modify(file, content);
+           } else {
+               await this.app.vault.create(filePath, content);
+           }
+           new Notice(`Successfully exported plugin list to ${filePath}`);
+       } catch (e) {
+           console.error(e);
+           new Notice('Error exporting plugin list. Check the console for details.');
+       }
+   }
 }
