@@ -1,94 +1,150 @@
-# Obsidian Sample Plugin
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+  <h3 align="center">Plugin Pilot for Obsidian</h3>
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+  <p align="center">
+    Take control of your Obsidian plugins! Categorize, annotate, create profiles, and inspect your plugins to keep your vault running smoothly.
+    <br />
+    <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/LaunchedBerry07/obsidian-plugin-pilot/issues">Request Feature</a>
+  </p>
+</div>
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-## First time developing plugins?
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-Quick starting guide for new plugin devs:
+[![Plugin Pilot Screenshot][product-screenshot]](https://github.com/LaunchedBerry07/obsidian-plugin-pilot)
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+As your Obsidian vault grows, so does the number of community plugins you use. It can quickly become difficult to remember what each plugin does, which ones might conflict, or how to manage different sets of plugins for different tasks (like writing vs. coding).
 
-## Releasing new releases
+Plugin Pilot is your co-pilot for managing this complexity. It provides a powerful, centralized interface to organize, annotate, and control your community plugins, helping you keep your workspace clean, efficient, and stable.
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+Here's why you'll love Plugin Pilot:
+* Bring Order to Chaos: Group your plugins into custom categories that make sense for your workflow.
+* Remember Everything: Add personal notes and star ratings to remind yourself why a plugin is essential (or why you should be careful with it).
+* Prevent Issues: Manually flag plugins that have known conflicts, so you can easily spot potential problems.
+* Task-Specific Setups: Create "Profiles" to quickly enable and disable entire groups of plugins with a single command.
+* Understand Your Tools: Use the Plugin Inspector to see a quick summary of what any plugin adds to your Obsidian environment.
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+Of course, no one plugin can solve every problem, so I'm excited to see how the community contributes to making Plugin Pilot even better.
 
-## Adding your plugin to the community plugin list
+### Built With
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+This project was built with the tools and technologies that power the Obsidian ecosystem.
 
-## How to use
+* Obsidian API
+* TypeScript
+* ESBuild
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+<!-- GETTING STARTED -->
+## Getting Started
 
-## Manually installing the plugin
+Plugin Pilot can be installed directly from the Obsidian Community Plugins browser.
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+### Installation
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint ./src/`
+1. Open Settings in Obsidian.
+2. Go to the Community plugins tab.
+3. Make sure "Restricted mode" is turned off.
+4. Click Browse to open the community plugins browser.
+5. Search for "Plugin Pilot".
+6. Click the Install button.
+7. Once installed, go back to the Community plugins tab and enable Plugin Pilot.
 
-## Funding URL
+<!-- USAGE EXAMPLES -->
+## Usage
 
-You can include funding URLs where people who use your plugin can financially support it.
+Plugin Pilot is designed to be intuitive. Here’s a quick guide to its main features.
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+1. Main Interface
+    Open the main interface by clicking the plane icon in the ribbon or by running the "Open Plugin Pilot" command from the Command Palette. This modal is your central hub for managing everything.
+2. Creating Categories
+    Go to the "Plugin Pilot" settings tab to create your categories. You can give them a name and even assign a color to make them stand out.
+3. Organizing Your Plugins
+    In the main modal, each plugin has a dropdown menu on the right. Simply select the category you want to assign it to.
+4. Annotating and Flagging
+    * Notes: Click the note icon to add or edit personal notes for any plugin.
+    * Ratings: Click the stars to give a plugin a rating from 1 to 5.
+    * Conflict Flagging: Click the shield icon to flag a plugin. A red alert icon will then appear next to its name as a visual reminder.
+5. Inspecting Plugins
+    Curious what a plugin does? Click the "info" icon on any plugin row to see a summary of the commands, settings tabs, and ribbon icons it adds to your workspace.
+6. Using Profiles
+    In the settings tab, create a new profile. Then, click "Edit" to open the profile editor, where you can toggle which plugins should be active for that profile. A new command will be created for each profile, allowing you to activate it instantly from the Command Palette.
+7. Exporting Your List
+    Run the "Plugin Pilot: Export plugin list to Markdown" command. A new note will be created in your vault with a fully detailed and formatted list of your plugins, including links, ratings, notes, and summaries.
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
-```
+<!-- ROADMAP -->
+## Roadmap
 
-If you have multiple URLs, you can also do:
+See the [open issues](https://github.com/LaunchedBerry07/obsidian-plugin-pilot/issues) for a full list of proposed features (and known issues).
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
+<!-- CONTRIBUTING -->
+## Contributing
 
-## API Documentation
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-See https://github.com/obsidianmd/obsidian-api
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+## Contact
+
+Project Link: [https://github.com/LaunchedBerry07/obsidian-plugin-pilot](https://github.com/LaunchedBerry07/obsidian-plugin-pilot)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+* Obsidian API Docs
+* Best README Template
