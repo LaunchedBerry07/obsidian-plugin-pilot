@@ -15,6 +15,9 @@
  ],
  "author": "LaunchedBerry07",
  "license": "MIT",
+  "dependencies": {
+  "moment": "^2.29.4"
+},
  "devDependencies": {
    "@types/node": "^18.19.3",
    "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -24,8 +27,8 @@
    "tslib": "2.6.2",
    "typescript": "5.3.3",
    "obsidian": "github:obsidianmd/obsidian-api",
-   "moment": "^2.29.4",
    "@types/codemirror": "^5.60.7"
   }
  }
+
 
