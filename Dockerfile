@@ -1,4 +1,4 @@
-﻿# See here for image contents: https://github.com/devcontainers/images/tree/main/src/typescript-node
+# See here for image contents: https://github.com/devcontainers/images/tree/main/src/typescript-node
 # This Dockerfile starts from a pre-built image that includes Node.js, TypeScript, and other common development tools.
 FROM mcr.microsoft.com/devcontainers/typescript-node:18
 
