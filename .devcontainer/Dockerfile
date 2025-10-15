@@ -2,6 +2,7 @@
 # This Dockerfile starts from a pre-built image that includes Node.js, TypeScript, and other common development tools.
 FROM mcr.microsoft.com/devcontainers/typescript-node:18
 
+# This environment is clean and ready for Node.js development.
 # You can add custom system-level dependencies here if needed in the future.
 # For example:
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \

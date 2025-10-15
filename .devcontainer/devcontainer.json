@@ -5,7 +5,7 @@
         "build": {
                 // Sets the run context to one level up instead of the .devcontainer folder.
                 "context": "..",
-                // Points to the Dockerfile to create the container.
+                // Points to the Dockerfile in this folder to create the container.
                 "dockerfile": "Dockerfile"
         },
 
