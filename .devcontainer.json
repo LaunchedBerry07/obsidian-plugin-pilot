@@ -4,7 +4,7 @@
         "name": "Obsidian Plugin Development",
         "build": {
                 // Sets the run context to one level up instead of the .devcontainer folder.
-                "context": "..",
+                "context": ".",
                 // Points to the Dockerfile to create the container.
                 "dockerfile": "Dockerfile"
         },
@@ -27,4 +27,5 @@
 
         // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
         "remoteUser": "node"
+
 }
