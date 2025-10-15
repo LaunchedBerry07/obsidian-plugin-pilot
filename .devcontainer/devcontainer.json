@@ -1,1 +1,30 @@
+﻿// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+        "name": "Obsidian Plugin Development",
+        "build": {
+                // Sets the run context to one level up instead of the .devcontainer folder.
+                "context": "..",
+                // Points to the Dockerfile in this folder to create the container.
+                "dockerfile": "Dockerfile"
+        },
 
+        // Configure tool-specific properties.
+        "customizations": {
+                // Configure properties specific to VS Code.
+                "vscode": {
+                        "settings": {},
+                        "extensions": [
+                                "esbenp.prettier-vscode",
+                                "dbaeumer.vscode-eslint",
+                                "streetsidesoftware.code-spell-checker"
+                        ]
+                }
+        },
+
+        // Use 'postCreateCommand' to run commands after the container is created.
+        "postCreateCommand": "npm install",
+
+        // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+        "remoteUser": "node"
+}
